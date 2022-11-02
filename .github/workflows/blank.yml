@@ -9,12 +9,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-    # echo outputs some text, by default this is to the terminal but can also add text to a file
-    - run: echo 'Hello World!'
-    - run: echo 'Running on ${{runner.os}}' # Our runner has inbuilt variables we can access
+
+    - run: ls -a
+    - name: Checkout
+      uses: actions/checkout@v2.5.0 # Default repo to clone down / checkout is our one
+    - run: echo '${{github.repository}}'
+    - run: ls -a
+    
+    # Command to print out the contents of a file
+    - run: mkdir > new-directory
+    - run: cat > new-file.txt
+    - run: python hello.py
   
   job2:
     runs-on: ubuntu-latest
+    
     steps:
     - run: echo 'Hello World'
     - run: pwd
@@ -23,17 +32,7 @@ jobs:
     - run: echo 'job name ${{ github.job }}'
     
   job3:
-    runs-on: ubuntu-latest
-    steps:
-    - run: ls -a
-    - name: Checkout
-      uses: actions/checkout@v2.5.0 # Default repo to clone down / checkout is our one
-    - run: echo '${{github.repository}}'
-    - run: ls -a
     
-    # Command to print out the contents of a file
-    - run: cat new-file.txt
-    - run: python hello.py
     
   print_job:
     runs-on: ubuntu-latest
