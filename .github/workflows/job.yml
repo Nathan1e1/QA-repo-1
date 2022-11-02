@@ -1,0 +1,20 @@
+name: new-jobs
+
+jobs:
+  
+  demo_job:
+    
+    runs-on: ubuntu-latest
+   
+    steps: 
+    - run: pwd
+    - run: ls
+    - name: Checkout
+      uses: actions/checkout@v2.5.0 # Default repo to clone down / checkout is our one
+    - run: echo '${{github.repository}}'
+    - run: ls -a
+    # Command to print out the contents of a file
+    - run: cat file1.txt
+    - run: echo "This is new text" >> file1.txt
+    - run: cat file1.txt
+    - run: python hello.py
